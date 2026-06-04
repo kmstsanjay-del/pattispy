@@ -16,17 +16,55 @@ const SONGS = [
     img: "img/tvk_campaign_song.png",
     color: "#1a3a5c",
     accent: "#4a8fcc",
-    lyrics: [
-      { time: 0, text: "🎵 [Instrumental Prelude] 🎵" },
-      { time: 5, text: "Tamilaga Vettri Kazhagam Kodi Parakkum!" },
-      { time: 10, text: "Makkal Konda Kondaattam, Puthu Sarithiram Pirakkum." },
-      { time: 16, text: "Vetri Kadi Katti, Thuninthu Ezhuvom Nee!" },
-      { time: 22, text: "Nenjil Konda Anbinal Urimai Kaapom Va!" },
-      { time: 28, text: "Uzhaitthidum Karangalgal Kaipidithae Selvom." },
-      { time: 33, text: "Thalaivanin Kural Kettu Aniyaayatthai Velvom!" },
-      { time: 38, text: "Tamilaga Vettri Kazhagam Kodi Parakkum!" },
-      { time: 44, text: "🎵 [Ending Solo Guitar] 🎵" }
-    ]
+    lyrics:[
+  { "time": 0, "text": "Vettri kazhaga kodi yaerudhu" },
+  { "time": 5, "text": "Namma sanaththin vidhi maarudhu" },
+  { "time": 10, "text": "Vettri kazhaga kodi yaerudhu" },
+  { "time": 15, "text": "Makkal aasa nejamaagudhu" },
+  { "time": 22, "text": "Tamizhan kodi parakkudhu" },
+  { "time": 25, "text": "Thalaivan yugam porakkudhu" },
+  { "time": 27, "text": "Moonezhuththu mandhiraththa meendum kaalam olikkudhu" },
+  { "time": 33, "text": "Tamizhan kodi parakkudhu" },
+  { "time": 35, "text": "Thalaivan yugam porakkudhu" },
+  { "time": 38, "text": "Moonezhuththu mandhiraththa meendum kaalam olikkudhu" },
+  { "time": 44, "text": "Sirusum perusum rasikkudhu" },
+  { "time": 46, "text": "Singa pengal sirikkudhu" },
+  { "time": 49, "text": "Makkaloda thoppul kodiyil molachcha kodiyum parakkudhu" },
+  { "time": 55, "text": "Manasil makkala vaikkum thalaivan varum naeramidhu" },
+  { "time": 100, "text": "Makkalum avana manasil vachchu aadi paadi kooppidudhu" },
+  { "time": 105, "text": "Sigaram kedachcha pinbu erangi vandhu saeva senju" },
+  { "time": 111, "text": "Neenga kuduththa ellaathukkum nandri kaattum kaalamidhu" },
+  { "time": 116, "text": "Tamizhaa tamizhaa namma vaazha poromae" },
+  { "time": 121, "text": "Oru karayillaadha kaiya pudichu poga poromae" },
+  { "time": 127, "text": "Tamizhaa tamizhaa namma vaazha poromae" },
+  { "time": 132, "text": "Oru karayillaadha kaiya pudichu poga poromae" },
+  { "time": 137, "text": "Tamizhan kodi thalaivan kodi" },
+  { "time": 140, "text": "Dharma kodi tharaiyin kodi" },
+  { "time": 143, "text": "Veera kodi vijaya kodi" },
+  { "time": 145, "text": "Aadhikudiya kaakkum kodi" },
+  { "time": 148, "text": "Hey tamizhan kodi thalaivan kodi" },
+  { "time": 151, "text": "Dharma kodi tharaiyin kodi" },
+  { "time": 154, "text": "Veera kodi vijaya kodi" },
+  { "time": 156, "text": "Aadhikudiya kaakkum kodi" },
+  { "time": 204, "text": "Hey raththa sivappil niram eduththom" },
+  { "time": 206, "text": "Retta yaana balam koduththom" },
+  { "time": 209, "text": "Narambil oadum tamizh unarva uruvi kodiyin uru koduththom" },
+  { "time": 215, "text": "Manjal eduththu alangarichchom" },
+  { "time": 217, "text": "Pachcha neela thilagam vachchom" },
+  { "time": 220, "text": "Paridhavikkum makkal pakkam singam varardha paraiyadichchom" },
+  { "time": 225, "text": "Dhoora ninnu paarkkum thalaivan kaalamellaam maarudhu" },
+  { "time": 231, "text": "Tholil vandhu kaiya podum thalaivan kodi yaerudhu" },
+  { "time": 236, "text": "Arasara kaelvi kaetkkum thalapathiyin kaalamadi" },
+  { "time": 241, "text": "Annaikkae sonnomae idhu aalappora tamizhan kodi" },
+  { "time": 246, "text": "Hey tamizhan kodi thalaivan kodi" },
+  { "time": 249, "text": "Dharma kodi tharaiyin kodi" },
+  { "time": 252, "text": "Veera kodi vijaya kodi" },
+  { "time": 254, "text": "Aadhikudiya kaakkum kodi" },
+  { "time": 257, "text": "Thalaivan kodi dharma kodi" },
+  { "time": 259, "text": "Tharaiyin kodi veera kodi" },
+  { "time": 262, "text": "Vettri vaagai soodappora vijaya kodi makkal kodi" },
+  { "time": 311, "text": "Tamizhan kodi parakkudhu" }
+]
   },
   {
     id: 1,
@@ -172,7 +210,20 @@ const loginUseridInput   = document.getElementById('login-userid');
 const loginPasswordInput = document.getElementById('login-password');
 const registerUseridInput = document.getElementById('register-userid');
 const registerPasswordInput = document.getElementById('register-password');
-const avatarOptions     = document.querySelectorAll('.avatar-opt');
+const registerPhoneInput = document.getElementById('register-phone');
+const loginPhoneInput    = document.getElementById('login-phone');
+const loginOtpInput      = document.getElementById('login-otp');
+const loginUseridGroup   = document.getElementById('login-userid-group');
+const loginPhoneGroup    = document.getElementById('login-phone-group');
+const loginPasswordGroup = document.getElementById('login-password-group');
+const loginOtpGroup      = document.getElementById('login-otp-group');
+const btnToggleAuthMode  = document.getElementById('btn-toggle-auth-mode');
+const btnLoginSubmit     = document.getElementById('btn-login-submit');
+const smsBanner          = document.getElementById('sms-banner');
+const smsMessageText     = document.getElementById('sms-message-text');
+const otpTimerDisplayWrap = document.getElementById('otp-timer-display-wrap');
+const otpTimerSeconds    = document.getElementById('otp-timer-seconds');
+const avatarOptions      = document.querySelectorAll('.avatar-opt');
 
 // Sidebar views & actions
 const navHome           = document.getElementById('nav-home');
@@ -322,7 +373,7 @@ function getRegisteredUsers() {
   return users ? JSON.parse(users) : [];
 }
 
-function registerNewUser(username, password, avatar) {
+function registerNewUser(username, phone, password, avatar) {
   const users = getRegisteredUsers();
   const lowerUsername = username.toLowerCase();
   
@@ -331,7 +382,12 @@ function registerNewUser(username, password, avatar) {
     return { success: false, message: 'User ID is already taken!' };
   }
   
-  users.push({ username, password, avatar });
+  const existsPhone = users.some(u => u.phone === phone);
+  if (existsPhone) {
+    return { success: false, message: 'Mobile number is already registered!' };
+  }
+  
+  users.push({ username, phone, password, avatar });
   localStorage.setItem('pattispy_users', JSON.stringify(users));
   return { success: true };
 }
@@ -350,6 +406,41 @@ function authenticateUser(username, password) {
   }
   
   return { success: true, user: user };
+}
+
+function loginUserWithData(userData) {
+  state.user = {
+    isLoggedIn: true,
+    username: userData.username,
+    avatar: userData.avatar || '🔥'
+  };
+  
+  localStorage.setItem('pattispy_session', JSON.stringify({
+    username: userData.username,
+    avatar: userData.avatar
+  }));
+  
+  applyProfileUI();
+  loadPlaylistsFromStorage();
+  renderSidebarPlaylists();
+  renderMobileLibraryPlaylists();
+  renderHomeViews();
+  
+  // Clear forms
+  loginUseridInput.value = '';
+  loginPasswordInput.value = '';
+  if (loginPhoneInput) loginPhoneInput.value = '';
+  if (loginOtpInput) loginOtpInput.value = '';
+  
+  loginOverlay.classList.add('hidden');
+  showToast(`Welcome back, ${userData.username}! 🎵`);
+}
+
+function showLoginError(msg) {
+  authErrorMsg.textContent = msg;
+  authErrorMsg.style.display = 'block';
+  authErrorMsg.style.animation = 'none';
+  setTimeout(() => authErrorMsg.style.animation = '', 10);
 }
 
 // ─── Playlists Management & Memory ────────────────────
@@ -1236,6 +1327,176 @@ function updateLyricsSync(currentTime) {
 
 // ─── Event binds registry ──────────────────────────────
 function bindEvents() {
+  let loginMode = 'password'; // 'password' or 'otp'
+  let otpSent = false;
+  let generatedOTP = '';
+  let otpCountdownTimer = null;
+
+  btnToggleAuthMode.addEventListener('click', () => {
+    loginMode = loginMode === 'password' ? 'otp' : 'password';
+    otpSent = false;
+    generatedOTP = '';
+    clearInterval(otpCountdownTimer);
+    otpTimerDisplayWrap.style.display = 'none';
+    authErrorMsg.style.display = 'none';
+    
+    if (loginMode === 'password') {
+      loginUseridGroup.style.display = 'block';
+      loginPasswordGroup.style.display = 'block';
+      loginPhoneGroup.style.display = 'none';
+      loginOtpGroup.style.display = 'none';
+      loginUseridInput.required = true;
+      loginPasswordInput.required = true;
+      loginPhoneInput.required = false;
+      loginOtpInput.required = false;
+      btnToggleAuthMode.textContent = 'Log in with Mobile Number & OTP';
+      btnLoginSubmit.textContent = 'Log In';
+    } else {
+      loginUseridGroup.style.display = 'none';
+      loginPasswordGroup.style.display = 'none';
+      loginPhoneGroup.style.display = 'block';
+      loginOtpGroup.style.display = 'none';
+      loginUseridInput.required = false;
+      loginPasswordInput.required = false;
+      loginPhoneInput.required = true;
+      loginOtpInput.required = false;
+      btnToggleAuthMode.textContent = 'Log in with Username & Password';
+      btnLoginSubmit.textContent = 'Send OTP';
+    }
+  });
+
+  // Login form submission
+  formLogin.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    if (loginMode === 'password') {
+      const username = loginUseridInput.value.trim();
+      const password = loginPasswordInput.value;
+      
+      if (!username || !password) return;
+      
+      const result = authenticateUser(username, password);
+      if (!result.success) {
+        showLoginError(result.message);
+        return;
+      }
+      
+      loginUserWithData(result.user);
+    } else {
+      const phone = loginPhoneInput.value.trim();
+      
+      if (!/^[0-9]{10}$/.test(phone)) {
+        showLoginError('Please enter a valid 10-digit mobile number.');
+        return;
+      }
+      
+      if (!otpSent) {
+        const users = getRegisteredUsers();
+        const user = users.find(u => u.phone === phone);
+        if (!user) {
+          showLoginError('Mobile number not registered. Please sign up!');
+          return;
+        }
+        
+        generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+        otpSent = true;
+        
+        loginOtpGroup.style.display = 'block';
+        loginOtpInput.required = true;
+        btnLoginSubmit.textContent = 'Verify & Log In';
+        
+        // Simulated SMS banner
+        smsMessageText.textContent = `Pattispy Code: ${generatedOTP}. Valid for 2 mins.`;
+        smsBanner.classList.add('show');
+        setTimeout(() => {
+          smsBanner.classList.remove('show');
+        }, 8000);
+        
+        // Timer countdown
+        let seconds = 60;
+        otpTimerDisplayWrap.style.display = 'block';
+        otpTimerSeconds.textContent = seconds;
+        clearInterval(otpCountdownTimer);
+        otpCountdownTimer = setInterval(() => {
+          seconds--;
+          if (seconds <= 0) {
+            clearInterval(otpCountdownTimer);
+            otpTimerDisplayWrap.innerHTML = `Didn't get it? <button type="button" class="btn-resend-otp" id="btn-resend-otp" style="background: none; border: none; color: var(--accent); font-family: var(--font); font-weight: 700; cursor: pointer; text-decoration: underline; margin-left: 6px;">Resend OTP</button>`;
+            document.getElementById('btn-resend-otp').addEventListener('click', () => {
+              otpSent = false;
+              formLogin.dispatchEvent(new Event('submit'));
+            });
+          } else {
+            const secSpan = document.getElementById('otp-timer-seconds');
+            if (secSpan) secSpan.textContent = seconds;
+          }
+        }, 1000);
+        
+        showToast('OTP sent successfully! 💬');
+      } else {
+        const enteredCode = loginOtpInput.value.trim();
+        if (enteredCode !== generatedOTP) {
+          showLoginError('Incorrect verification code. Please try again!');
+          return;
+        }
+        
+        const users = getRegisteredUsers();
+        const user = users.find(u => u.phone === phone);
+        clearInterval(otpCountdownTimer);
+        loginUserWithData(user);
+      }
+    }
+  });
+
+  // Register form submission
+  formRegister.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = registerUseridInput.value.trim();
+    const phone = registerPhoneInput.value.trim();
+    const password = registerPasswordInput.value;
+    
+    if (!username || !phone || !password) return;
+    
+    if (!/^[0-9]{10}$/.test(phone)) {
+      showLoginError('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    
+    const result = registerNewUser(username, phone, password, selectedAvatar);
+    if (!result.success) {
+      authErrorMsg.textContent = result.message;
+      authErrorMsg.style.display = 'block';
+      authErrorMsg.style.animation = 'none';
+      setTimeout(() => authErrorMsg.style.animation = '', 10);
+      return;
+    }
+    
+    state.user = {
+      isLoggedIn: true,
+      username: username,
+      avatar: selectedAvatar
+    };
+    
+    localStorage.setItem('pattispy_session', JSON.stringify({
+      username: username,
+      avatar: selectedAvatar
+    }));
+    
+    applyProfileUI();
+    loadPlaylistsFromStorage();
+    renderSidebarPlaylists();
+    renderMobileLibraryPlaylists();
+    renderHomeViews();
+    
+    // Clear forms
+    registerUseridInput.value = '';
+    registerPhoneInput.value = '';
+    registerPasswordInput.value = '';
+    
+    loginOverlay.classList.add('hidden');
+    showToast(`Registered successfully! Welcome, ${username}! 🎉`);
+  });
+
   // Tabs switcher click events
   authTabLogin.addEventListener('click', () => {
     authTabLogin.classList.add('active');
@@ -1261,81 +1522,6 @@ function bindEvents() {
       opt.classList.add('active');
       selectedAvatar = opt.dataset.avatar;
     });
-  });
-
-  // Login form submission
-  formLogin.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const username = loginUseridInput.value.trim();
-    const password = loginPasswordInput.value;
-    
-    if (!username || !password) return;
-    
-    const result = authenticateUser(username, password);
-    if (!result.success) {
-      authErrorMsg.textContent = result.message;
-      authErrorMsg.style.display = 'block';
-      authErrorMsg.style.animation = 'none';
-      setTimeout(() => authErrorMsg.style.animation = '', 10);
-      return;
-    }
-    
-    state.user = {
-      isLoggedIn: true,
-      username: username,
-      avatar: result.user.avatar || '🔥'
-    };
-    
-    localStorage.setItem('pattispy_session', JSON.stringify({
-      username: username,
-      avatar: result.user.avatar
-    }));
-    
-    applyProfileUI();
-    loadPlaylistsFromStorage();
-    renderSidebarPlaylists();
-    renderMobileLibraryPlaylists();
-    renderHomeViews();
-    
-    loginOverlay.classList.add('hidden');
-    showToast(`Welcome back, ${username}! 🎵`);
-  });
-
-  // Register form submission
-  formRegister.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const username = registerUseridInput.value.trim();
-    const password = registerPasswordInput.value;
-    
-    if (!username || !password) return;
-    
-    const result = registerNewUser(username, password, selectedAvatar);
-    if (!result.success) {
-      authErrorMsg.textContent = result.message;
-      authErrorMsg.style.display = 'block';
-      authErrorMsg.style.animation = 'none';
-      setTimeout(() => authErrorMsg.style.animation = '', 10);
-      return;
-    }
-    
-    state.user = {
-      isLoggedIn: true,
-      username: username,
-      avatar: selectedAvatar
-    };
-    
-    localStorage.setItem('pattispy_session', JSON.stringify({
-      username: username,
-      avatar: selectedAvatar
-    }));
-    
-    applyProfileUI();
-    loadPlaylistsFromStorage();
-    renderSidebarPlaylists();
-    renderHomeViews();
-    
-    loginOverlay.classList.add('hidden');
-    showToast(`Registered successfully! Welcome, ${username}! 🎉`);
   });
 
   // User Profile options dropdown triggers
