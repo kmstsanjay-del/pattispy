@@ -1051,3 +1051,340 @@ body {
 @media (max-width: 768px) {
   .toast { bottom: 150px; }
 }
+
+/* ======================================
+   SIMULATED SMS OTP BANNER
+ ====================================== */
+.sms-banner {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  width: calc(100% - 40px);
+  max-width: 380px;
+  background: rgba(24, 24, 24, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  z-index: 10005;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.sms-banner.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.sms-icon {
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #1DB954, #21d85f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+
+.sms-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sms-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.sms-message {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Button Auth Switcher Hover states */
+#btn-toggle-auth-mode:hover {
+  color: var(--accent-hover) !important;
+  transform: scale(1.01);
+}
+
+/* ======================================
+   PROFILE SIDEBAR DRAWER MENU
+ ====================================== */
+.profile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.profile-drawer-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0e0e0e 0%, #151515 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.8);
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 24px 20px;
+}
+.profile-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.drawer-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px;
+  transition: color var(--transition-fast);
+}
+.drawer-close:hover {
+  color: var(--text-primary);
+}
+
+.drawer-profile-sec {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 10px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+}
+.drawer-profile-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007aff, #0055ff);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+  text-transform: uppercase;
+}
+.drawer-profile-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.drawer-profile-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drawer-profile-view {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.drawer-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.drawer-menu-item {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  position: relative;
+}
+.drawer-menu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.drawer-menu-icon {
+  font-size: 1.2rem;
+  margin-right: 16px;
+  width: 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.drawer-menu-text {
+  flex: 1;
+}
+.drawer-menu-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #333333;
+  color: var(--text-secondary);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-left: auto;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ======================================
+   SETTINGS VIEW
+ ====================================== */
+#view-settings {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0c0c0c;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(12, 12, 12, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.settings-back-btn,
+.settings-search-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition-fast);
+}
+.settings-back-btn:hover,
+.settings-search-btn:hover {
+  opacity: 0.8;
+}
+.settings-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.scrollable-settings {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.settings-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.settings-item-icon {
+  font-size: 1.4rem;
+  margin-right: 20px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.settings-item-text {
+  flex: 1;
+  min-width: 0;
+}
+.settings-item-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.settings-item-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-logout-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+.btn-settings-logout {
+  width: 100%;
+  max-width: 240px;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+}
+.btn-settings-logout:hover {
+  background: #e6e6e6;
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .profile-drawer {
+    width: 280px;
+  }
+}

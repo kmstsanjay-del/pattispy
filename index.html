@@ -12,6 +12,15 @@
 </head>
 <body>
 
+  <!-- Simulated SMS OTP Banner -->
+  <div class="sms-banner" id="sms-banner">
+    <div class="sms-icon">💬</div>
+    <div class="sms-content">
+      <div class="sms-title">MESSAGES · NOW</div>
+      <div class="sms-message" id="sms-message-text">Pattispy Code: XXXX. Valid for 2 mins.</div>
+    </div>
+  </div>
+
   <!-- ========== LOGIN OVERLAY ========== -->
   <div class="login-overlay" id="login-overlay">
     <div class="login-bg-glow"></div>
@@ -40,17 +49,34 @@
       <form id="form-login" class="auth-form active">
         <h3 class="auth-heading">To continue, log in to Pattispy.</h3>
         
-        <div class="input-group">
+        <div class="input-group" id="login-userid-group">
           <input type="text" id="login-userid" required autocomplete="off" placeholder=" " />
           <label for="login-userid">User ID / Username</label>
         </div>
 
-        <div class="input-group">
+        <div class="input-group" id="login-phone-group" style="display: none">
+          <input type="tel" id="login-phone" autocomplete="off" placeholder=" " pattern="[0-9]{10}" />
+          <label for="login-phone">Mobile Number (10 digits)</label>
+        </div>
+
+        <div class="input-group" id="login-password-group">
           <input type="password" id="login-password" required autocomplete="off" placeholder=" " />
           <label for="login-password">Password</label>
         </div>
 
-        <button type="submit" class="btn-login">Log In</button>
+        <div class="input-group" id="login-otp-group" style="display: none">
+          <input type="text" id="login-otp" autocomplete="off" placeholder=" " maxlength="4" />
+          <label for="login-otp">Enter 4-Digit OTP Code</label>
+          <div class="otp-timer-wrap" style="margin-top: 8px; font-size: 0.8rem; color: var(--text-secondary); display: none" id="otp-timer-display-wrap">
+            Resend code in <span id="otp-timer-seconds">60</span>s
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="btn-login-submit">Log In</button>
+
+        <div class="auth-toggle-option" style="margin-top: 20px; text-align: center;">
+          <button type="button" id="btn-toggle-auth-mode" style="background: none; border: none; color: var(--accent); font-family: var(--font); font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: underline;">Log in with Mobile Number & OTP</button>
+        </div>
       </form>
 
       <!-- Register Form -->
@@ -63,8 +89,18 @@
         </div>
 
         <div class="input-group">
+          <input type="tel" id="register-phone" required autocomplete="off" placeholder=" " pattern="[0-9]{10}" />
+          <label for="register-phone">Mobile Number (10 digits)</label>
+        </div>
+
+        <div class="input-group">
           <input type="password" id="register-password" required autocomplete="off" placeholder=" " />
           <label for="register-password">Password</label>
+        </div>
+
+        <div class="input-checkbox-group" style="margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="register-2fa" style="width: auto; cursor: pointer;" />
+          <label for="register-2fa" style="position: static; font-size: 0.88rem; color: var(--text-secondary); cursor: pointer; user-select: none;">Enable 2FA (Two-Step Verification)</label>
         </div>
 
         <div class="avatar-select-label">Choose your avatar style</div>
@@ -298,6 +334,105 @@
       </section>
     </div>
 
+    <!-- Dynamic Section: SETTINGS VIEW -->
+    <div id="view-settings" class="view-panel" style="display:none">
+      <section class="settings-header">
+        <button class="settings-back-btn" id="settings-back-btn" title="Back">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        <h2 class="settings-title">Settings</h2>
+        <button class="settings-search-btn" title="Search settings">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+      </section>
+
+      <section class="settings-content scrollable-settings">
+        <div class="settings-item">
+          <div class="settings-item-icon">👤</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Account</div>
+            <div class="settings-item-subtitle">Username, email, phone number, and password</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🖥️</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Content and display</div>
+            <div class="settings-item-subtitle">Language, text size, and layout scaling</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🔒</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Privacy and social</div>
+            <div class="settings-item-subtitle">Private session, sharing activity, and blocked users</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">▶️</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Playback</div>
+            <div class="settings-item-subtitle">Crossfade, gapless, and audio effects</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🔔</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Notifications</div>
+            <div class="settings-item-subtitle">Push, email, and inside app alerts</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🔌</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Apps and devices</div>
+            <div class="settings-item-subtitle">Connect external devices and speaker control</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">💾</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Data-saving and offline</div>
+            <div class="settings-item-subtitle">Cache size, download locations, and offline mode</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🎧</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Media quality</div>
+            <div class="settings-item-subtitle">Audio stream bitrates and download quality</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">📢</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Advertisements</div>
+            <div class="settings-item-subtitle">Simulated banner policies and sponsors</div>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item-icon">🤝</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">About and support</div>
+            <div class="settings-item-subtitle">Terms of service, version info, and contact</div>
+          </div>
+        </div>
+
+        <div class="settings-logout-wrap">
+          <button class="btn-settings-logout" id="btn-settings-logout">Log out</button>
+        </div>
+      </section>
+    </div>
+
   </main>
 
   <!-- ========== NOW PLAYING / PLAYER BAR ========== -->
@@ -476,6 +611,46 @@
       <span class="queue-label">Next up</span>
       <div id="queue-next-items"></div>
     </div>
+  </div>
+
+  <!-- ========== PROFILE SIDEBAR DRAWER MENU ========== -->
+  <div class="profile-drawer-overlay" id="profile-drawer-overlay"></div>
+  <div class="profile-drawer" id="profile-drawer">
+    <div class="drawer-header">
+      <button class="drawer-close" id="drawer-close" title="Close drawer">✕</button>
+    </div>
+    
+    <div class="drawer-profile-sec">
+      <div class="drawer-profile-icon" id="drawer-profile-icon">S</div>
+      <div class="drawer-profile-info">
+        <h3 class="drawer-profile-name" id="drawer-profile-name">Spotify User</h3>
+        <span class="drawer-profile-view">View Profile</span>
+      </div>
+    </div>
+    
+    <nav class="drawer-menu">
+      <button class="drawer-menu-item" id="btn-drawer-add-account">
+        <span class="drawer-menu-icon">➕</span>
+        <span>Add account</span>
+      </button>
+      <button class="drawer-menu-item" id="btn-drawer-plan">
+        <span class="drawer-menu-icon">💳</span>
+        <span class="drawer-menu-text">Your plan</span>
+        <span class="drawer-menu-badge">Premium</span>
+      </button>
+      <button class="drawer-menu-item" id="btn-drawer-new">
+        <span class="drawer-menu-icon">⚡</span>
+        <span>What's new</span>
+      </button>
+      <button class="drawer-menu-item" id="btn-drawer-recents">
+        <span class="drawer-menu-icon">🕒</span>
+        <span>Recents</span>
+      </button>
+      <button class="drawer-menu-item" id="btn-drawer-settings">
+        <span class="drawer-menu-icon">⚙️</span>
+        <span>Settings and privacy</span>
+      </button>
+    </nav>
   </div>
 
   <!-- Context Menu Dropdown -->
