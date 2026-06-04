@@ -260,19 +260,7 @@ const mobPlaylistsList     = document.getElementById('mobile-playlists-list');
 let activeContextTrackIndex = null;
 let isDraggingMobileProgress = false;
 
-// ─── Init ─────────────────────────────────────────────
-function init() {
-  checkAuth();
-  loadPlaylistsFromStorage();
-  updateGreetingHeader();
-  renderSidebarPlaylists();
-  renderHomeViews();
-  loadSong(state.currentIndex, false);
-  audio.volume = state.volume;
-  setVolumeUI(state.volume);
-  bindEvents();
-  generateShuffleOrder();
-}
+
 
 // ─── Auth Logic ───────────────────────────────────────
 function checkAuth() {
@@ -1294,22 +1282,23 @@ function bindEvents() {
     
     state.user = {
       isLoggedIn: true,
-      username: result.user.username,
+      username: username,
       avatar: result.user.avatar || '🔥'
     };
     
     localStorage.setItem('pattispy_session', JSON.stringify({
-      username: result.user.username,
+      username: username,
       avatar: result.user.avatar
     }));
     
     applyProfileUI();
     loadPlaylistsFromStorage();
     renderSidebarPlaylists();
+    renderMobileLibraryPlaylists();
     renderHomeViews();
     
     loginOverlay.classList.add('hidden');
-    showToast(`Welcome back, ${result.user.username}! 🎵`);
+    showToast(`Welcome back, ${username}! 🎵`);
   });
 
   // Register form submission
@@ -1464,7 +1453,8 @@ function bindEvents() {
     updateQueue();
   });
   queueClose.addEventListener('click', () => queuePanel.classList.remove('open'));
-
+  
+  
   // Main scroll blur styling
   document.getElementById('main-content').addEventListener('scroll', function() {
     const topbar = document.querySelector('.topbar');
@@ -1525,6 +1515,29 @@ document.addEventListener('keydown', (e) => {
       break;
   }
 });
+
+// ─── Initializer ──────────────────────────────────────
+function init() {
+  bindEvents();
+  
+  // Set default volume
+  audio.volume = state.volume;
+  setVolumeUI(state.volume);
+  
+  updateGreetingHeader();
+  
+  // Load the first song on startup but don't play automatically
+  loadSong(0, false);
+  
+  checkAuth();
+  
+  if (state.user.isLoggedIn) {
+    loadPlaylistsFromStorage();
+    renderSidebarPlaylists();
+    renderMobileLibraryPlaylists();
+    renderHomeViews();
+  }
+}
 
 // ─── Kick-off Start ───────────────────────────────────
 init();
